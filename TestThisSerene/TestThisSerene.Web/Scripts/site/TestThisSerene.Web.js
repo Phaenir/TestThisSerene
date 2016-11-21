@@ -379,22 +379,6 @@ var TestThisSerene;
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
-    var Authorization;
-    (function (Authorization) {
-        Object.defineProperty(Authorization, 'userDefinition', {
-            get: function () {
-                return Q.getRemoteData('UserData');
-            }
-        });
-        function hasPermission(permissionKey) {
-            var ud = Authorization.userDefinition;
-            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
-        }
-        Authorization.hasPermission = hasPermission;
-    })(Authorization = TestThisSerene.Authorization || (TestThisSerene.Authorization = {}));
-})(TestThisSerene || (TestThisSerene = {}));
-var TestThisSerene;
-(function (TestThisSerene) {
     var Administration;
     (function (Administration) {
         var UserDialog = (function (_super) {
@@ -491,6 +475,22 @@ var TestThisSerene;
         }(Serenity.EntityGrid));
         Administration.UserGrid = UserGrid;
     })(Administration = TestThisSerene.Administration || (TestThisSerene.Administration = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var Authorization;
+    (function (Authorization) {
+        Object.defineProperty(Authorization, 'userDefinition', {
+            get: function () {
+                return Q.getRemoteData('UserData');
+            }
+        });
+        function hasPermission(permissionKey) {
+            var ud = Authorization.userDefinition;
+            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+        }
+        Authorization.hasPermission = hasPermission;
+    })(Authorization = TestThisSerene.Authorization || (TestThisSerene.Authorization = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
@@ -3151,17 +3151,16 @@ var TestThisSerene;
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
             };
             CancellableBulkActionGrid.prototype.getButtons = function () {
-                var _this = this;
                 return [{
                         title: 'Perform Bulk Action on Selected Orders',
                         cssClass: 'send-button',
                         onClick: function () {
-                            if (!_this.onViewSubmit()) {
+                            if (!this.onViewSubmit()) {
                                 return;
                             }
                             var action = new BasicSamples.OrderBulkAction();
-                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
-                            action.execute(_this.rowSelection.getSelectedKeys());
+                            action.done = function () { return this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(this.rowSelection.getSelectedKeys());
                         }
                     }];
             };
@@ -3719,7 +3718,7 @@ var TestThisSerene;
                     {
                         title: 'Group By Category and Supplier',
                         cssClass: 'expand-all-button',
-                        onClick: function () { return _this.view.setGrouping([{
+                        onClick: function () { return this.view.setGrouping([{
                                 formatter: function (x) { return 'Category: ' + x.value + ' (' + x.count + ' items)'; },
                                 getter: 'CategoryName'
                             }, {
@@ -3729,7 +3728,7 @@ var TestThisSerene;
                     }, {
                         title: 'No Grouping',
                         cssClass: 'collapse-all-button',
-                        onClick: function () { return _this.view.setGrouping([]); }
+                        onClick: function () { return this.view.setGrouping([]); }
                     }];
             };
             GroupingAndSummariesInGrid = __decorate([
@@ -4444,6 +4443,14 @@ var TestThisSerene;
         }(Serenity.EntityGrid));
         BasicSamples.VSGalleryQAGrid = VSGalleryQAGrid;
     })(BasicSamples = TestThisSerene.BasicSamples || (TestThisSerene.BasicSamples = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var ScriptInitialization;
+    (function (ScriptInitialization) {
+        Q.Config.responsiveDialogs = true;
+        Q.Config.rootNamespaces.push('TestThisSerene');
+    })(ScriptInitialization = TestThisSerene.ScriptInitialization || (TestThisSerene.ScriptInitialization = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
@@ -5413,6 +5420,55 @@ var TestThisSerene;
         Membership.SignUpForm = SignUpForm;
         [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = TestThisSerene.Membership || (TestThisSerene.Membership = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieForm = (function (_super) {
+            __extends(MovieForm, _super);
+            function MovieForm() {
+                _super.apply(this, arguments);
+            }
+            MovieForm.formKey = 'MovieDB.Movie';
+            return MovieForm;
+        }(Serenity.PrefixedContext));
+        MovieDB.MovieForm = MovieForm;
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Storyline', function () { return Serenity.StringEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieRow;
+        (function (MovieRow) {
+            MovieRow.idProperty = 'MovieId';
+            MovieRow.nameProperty = 'Title';
+            MovieRow.localTextPrefix = 'MovieDB.Movie';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
+            ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime'].forEach(function (x) { return Fields[x] = x; });
+        })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieService;
+        (function (MovieService) {
+            MovieService.baseUrl = 'MovieDB/Movie';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MovieService.Methods || (MovieService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MovieService[x] = function (r, s, o) { return Q.serviceRequest(MovieService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MovieService.baseUrl + '/' + x;
+            });
+        })(MovieService = MovieDB.MovieService || (MovieDB.MovieService = {}));
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
@@ -6543,12 +6599,12 @@ var TestThisSerene;
                     {
                         title: 'PDF',
                         cssClass: 'export-pdf-button',
-                        onClick: function () { return _this.executeReport('_blank', 'pdf', true); }
+                        onClick: function () { return this.executeReport('_blank', 'pdf', true); }
                     },
                     {
                         title: 'Excel',
                         cssClass: 'export-xlsx-button',
-                        onClick: function () { return _this.executeReport('_blank', 'xlsx', true); }
+                        onClick: function () { return this.executeReport('_blank', 'xlsx', true); }
                     }
                 ];
             };
@@ -6630,14 +6686,6 @@ var TestThisSerene;
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
-    var ScriptInitialization;
-    (function (ScriptInitialization) {
-        Q.Config.responsiveDialogs = true;
-        Q.Config.rootNamespaces.push('TestThisSerene');
-    })(ScriptInitialization = TestThisSerene.ScriptInitialization || (TestThisSerene.ScriptInitialization = {}));
-})(TestThisSerene || (TestThisSerene = {}));
-var TestThisSerene;
-(function (TestThisSerene) {
     var Common;
     (function (Common) {
         var UserPreferenceStorage = (function () {
@@ -6664,6 +6712,61 @@ var TestThisSerene;
         }());
         Common.UserPreferenceStorage = UserPreferenceStorage;
     })(Common = TestThisSerene.Common || (TestThisSerene.Common = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var Membership;
+    (function (Membership) {
+        var LoginPanel = (function (_super) {
+            __extends(LoginPanel, _super);
+            function LoginPanel(container) {
+                var _this = this;
+                _super.call(this, container);
+                $(function () {
+                    $('body').vegas({
+                        delay: 10000,
+                        cover: true,
+                        overlay: Q.resolveUrl("~/scripts/vegas/overlays/01.png"),
+                        slides: [
+                            { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide3.jpg'), transition: 'zoomOut' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide4.jpg'), transition: 'blur' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
+                        ]
+                    });
+                });
+                this.form = new Membership.LoginForm(this.idPrefix);
+                this.byId('LoginButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/Login'),
+                        request: request,
+                        onSuccess: function (response) {
+                            var q = Q.parseQueryString();
+                            var returnUrl = q['returnUrl'] || q['ReturnUrl'];
+                            if (returnUrl) {
+                                window.location.href = returnUrl;
+                            }
+                            else {
+                                window.location.href = Q.resolveUrl('~/');
+                            }
+                        }
+                    });
+                });
+            }
+            LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
+            LoginPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LoginPanel);
+            return LoginPanel;
+        }(Serenity.PropertyPanel));
+        Membership.LoginPanel = LoginPanel;
+    })(Membership = TestThisSerene.Membership || (TestThisSerene.Membership = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
@@ -6745,61 +6848,6 @@ var TestThisSerene;
             return ForgotPasswordPanel;
         }(Serenity.PropertyPanel));
         Membership.ForgotPasswordPanel = ForgotPasswordPanel;
-    })(Membership = TestThisSerene.Membership || (TestThisSerene.Membership = {}));
-})(TestThisSerene || (TestThisSerene = {}));
-var TestThisSerene;
-(function (TestThisSerene) {
-    var Membership;
-    (function (Membership) {
-        var LoginPanel = (function (_super) {
-            __extends(LoginPanel, _super);
-            function LoginPanel(container) {
-                var _this = this;
-                _super.call(this, container);
-                $(function () {
-                    $('body').vegas({
-                        delay: 10000,
-                        cover: true,
-                        overlay: Q.resolveUrl("~/scripts/vegas/overlays/01.png"),
-                        slides: [
-                            { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide3.jpg'), transition: 'zoomOut' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide4.jpg'), transition: 'blur' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
-                        ]
-                    });
-                });
-                this.form = new Membership.LoginForm(this.idPrefix);
-                this.byId('LoginButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/Login'),
-                        request: request,
-                        onSuccess: function (response) {
-                            var q = Q.parseQueryString();
-                            var returnUrl = q['returnUrl'] || q['ReturnUrl'];
-                            if (returnUrl) {
-                                window.location.href = returnUrl;
-                            }
-                            else {
-                                window.location.href = Q.resolveUrl('~/');
-                            }
-                        }
-                    });
-                });
-            }
-            LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
-            LoginPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LoginPanel);
-            return LoginPanel;
-        }(Serenity.PropertyPanel));
-        Membership.LoginPanel = LoginPanel;
     })(Membership = TestThisSerene.Membership || (TestThisSerene.Membership = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
@@ -6897,6 +6945,106 @@ var TestThisSerene;
         }(Serenity.PropertyPanel));
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = TestThisSerene.Membership || (TestThisSerene.Membership = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieDialog = (function (_super) {
+            __extends(MovieDialog, _super);
+            function MovieDialog() {
+                _super.apply(this, arguments);
+                this.form = new MovieDB.MovieForm(this.idPrefix);
+            }
+            MovieDialog.prototype.getFormKey = function () { return MovieDB.MovieForm.formKey; };
+            MovieDialog.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
+            MovieDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
+            MovieDialog.prototype.getNameProperty = function () { return MovieDB.MovieRow.nameProperty; };
+            MovieDialog.prototype.getService = function () { return MovieDB.MovieService.baseUrl; };
+            MovieDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MovieDialog);
+            return MovieDialog;
+        }(Serenity.EntityDialog));
+        MovieDB.MovieDialog = MovieDialog;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieEditor = (function (_super) {
+            __extends(MovieEditor, _super);
+            function MovieEditor(container) {
+                _super.call(this, container);
+            }
+            MovieEditor.prototype.getColumnsKey = function () { return 'MovieDB.Movie'; };
+            MovieEditor.prototype.getDialogType = function () { return MovieDB.MovieEditorDialog; };
+            MovieEditor.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
+            MovieEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MovieEditor);
+            return MovieEditor;
+        }(TestThisSerene.Common.GridEditorBase));
+        MovieDB.MovieEditor = MovieEditor;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieEditorDialog = (function (_super) {
+            __extends(MovieEditorDialog, _super);
+            function MovieEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MovieDB.MovieForm(this.idPrefix);
+            }
+            MovieEditorDialog.prototype.getFormKey = function () { return MovieDB.MovieForm.formKey; };
+            MovieEditorDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
+            MovieEditorDialog.prototype.getNameProperty = function () { return MovieDB.MovieRow.nameProperty; };
+            MovieEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MovieEditorDialog);
+            return MovieEditorDialog;
+        }(TestThisSerene.Common.GridEditorDialog));
+        MovieDB.MovieEditorDialog = MovieEditorDialog;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieGrid = (function (_super) {
+            __extends(MovieGrid, _super);
+            function MovieGrid(container) {
+                _super.call(this, container);
+            }
+            MovieGrid.prototype.getColumnsKey = function () { return 'MovieDB.Movie'; };
+            MovieGrid.prototype.getDialogType = function () { return MovieDB.MovieDialog; };
+            MovieGrid.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
+            MovieGrid.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
+            MovieGrid.prototype.getService = function () { return MovieDB.MovieService.baseUrl; };
+            MovieGrid.prototype.getQuickSearchFields = function () {
+                var fld = MovieDB.MovieRow.Fields;
+                var txt = function (s) { return Q.text("Db." + MovieDB.MovieRow.localTextPrefix + "." + s).toLowerCase(); };
+                return [
+                    { name: "", title: "all" },
+                    { name: fld.Description, title: txt(fld.Description) },
+                    { name: fld.Storyline, title: txt(fld.Storyline) },
+                    { name: fld.Year, title: txt(fld.Year) }
+                ];
+            };
+            MovieGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MovieGrid);
+            return MovieGrid;
+        }(Serenity.EntityGrid));
+        MovieDB.MovieGrid = MovieGrid;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {

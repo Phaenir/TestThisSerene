@@ -8005,3 +8005,13 @@ section.content > .s-DataGrid {
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
 }
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MovieDB-MovieDialog > .size {
+  width: 650px;
+  height: 500px;
+}
+.s-MovieDB-MovieDialog .caption {
+  width: 150px;
+}

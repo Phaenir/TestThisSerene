@@ -1771,6 +1771,20 @@
     <TypeScriptCompile Include="Scripts\typings\slickgrid\slickgrid.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\sortablejs\sortablejs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
+    <Content Include="Modules\MovieDB\Movie\MovieIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\MovieGrid.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\MovieDialog.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\MovieEditor.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Movie\MovieEditorDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1903,6 +1917,7 @@
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161120_180900_MovieTable.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161121_152600_MovieKind.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161118_195400_DragDropSample.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161013_002500_CustomerDetails.cs" />
@@ -1951,6 +1966,7 @@
     <Compile Include="Modules\Membership\Account\SignUp\SignUpForm.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\SignUpRequest.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
@@ -2086,6 +2102,12 @@
     <Compile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleForm.cs" />
     <Compile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleRepository.cs" />
     <Compile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleEndpoint.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieRow.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieColumns.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieForm.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieRepository.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieEndpoint.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MoviePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\typings\site\" />
