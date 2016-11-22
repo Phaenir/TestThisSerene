@@ -24,5 +24,7 @@ namespace TestThisSerene.MovieDB.Columns
         public DateTime ReleaseDate { get; set; }
         [DisplayName("Runtime in Minutes"), Width(150),AlignRight]
         public Int32 Runtime { get; set; }
+        [DisplayName("Kind"), Width(150), AlignRight]
+        public MovieKind? Kind { get; set; }
     }
 }

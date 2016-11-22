@@ -1,5 +1,4 @@
-﻿
-namespace TestThisSerene.MovieDB {
+﻿namespace TestThisSerene.MovieDB {
     export interface MovieRow {
         MovieId?: number;
         Title?: string;
@@ -8,6 +7,7 @@ namespace TestThisSerene.MovieDB {
         Year?: number;
         ReleaseDate?: string;
         Runtime?: number;
+        Kind?: MovieKind;
     }
 
     export namespace MovieRow {
@@ -16,16 +16,17 @@ namespace TestThisSerene.MovieDB {
         export const localTextPrefix = 'MovieDB.Movie';
 
         export namespace Fields {
-            export declare const MovieId;
-            export declare const Title;
-            export declare const Description;
-            export declare const Storyline;
-            export declare const Year;
-            export declare const ReleaseDate;
-            export declare const Runtime;
+            export declare const MovieId: string;
+            export declare const Title: string;
+            export declare const Description: string;
+            export declare const Storyline: string;
+            export declare const Year: string;
+            export declare const ReleaseDate: string;
+            export declare const Runtime: string;
+            export declare const Kind: string;
         }
 
-        ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime'].forEach(x => (<any>Fields)[x] = x);
+        ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime', 'Kind'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
