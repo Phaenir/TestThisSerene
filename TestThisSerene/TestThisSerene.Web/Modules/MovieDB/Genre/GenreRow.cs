@@ -14,6 +14,8 @@ namespace TestThisSerene.MovieDB.Entities
     [ConnectionKey("Default"), DisplayName("Genre"), InstanceName("Genre"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
+    [JsonConverter(typeof(JsonRowConverter))]
+    [LookupScript("MovieDB.Genre")]
     public sealed class GenreRow : Row, IIdRow, INameRow
     {
         [DisplayName("Genre Id"), Identity]
@@ -53,7 +55,7 @@ namespace TestThisSerene.MovieDB.Entities
             public StringField Genre;
 
             public RowFields()
-                : base("[dbo].[Genre]")
+                : base("[mov].[Genre]")
             {
                 LocalTextPrefix = "MovieDB.Genre";
             }

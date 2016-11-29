@@ -72,12 +72,13 @@ namespace TestThisSerene.MovieDB.Entities
             set { Fields.Kind[this] = (Int32)value; }
         }
         [DisplayName("Genre"), ForeignKey("[mov].Genre", "GenreId"), LeftJoin("g")]
+        [LookupEditor(typeof(GenreRow), InplaceAdd =true)]
         public Int32? GenreId
         {
             get { return Fields.GenreId[this]; }
             set { Fields.GenreId[this] = value; }
         }
-        [DisplayName("Genre"), Expression("g.Name")]
+        [DisplayName("Genre"), Expression("g.Genre")]
         public String GenreName
         {
             get { return Fields.GenreName[this]; }
