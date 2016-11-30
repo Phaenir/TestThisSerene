@@ -8,6 +8,7 @@ namespace TestThisSerene.MovieDB.Entities
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
 
@@ -71,6 +72,7 @@ namespace TestThisSerene.MovieDB.Entities
             get { return (MovieKind?)Fields.Kind[this]; }
             set { Fields.Kind[this] = (Int32)value; }
         }
+        /*
         [DisplayName("Genre"), ForeignKey("[mov].Genre", "GenreId"), LeftJoin("g")]
         [LookupEditor(typeof(GenreRow), InplaceAdd =true)]
         public Int32? GenreId
@@ -84,7 +86,15 @@ namespace TestThisSerene.MovieDB.Entities
             get { return Fields.GenreName[this]; }
             set { Fields.GenreName[this] = value; }
         }
-
+        */
+        [DisplayName("Genres")]
+        [LookupEditor(typeof(GenreRow), Multiple =true),NotMapped]
+        [LinkingSetRelation(typeof(MovieGenresRow),"MovieId","GenreId")]
+        public List<Int32> GenreList
+        {
+            get { return Fields.GenreList[this]; }
+            set { Fields.GenreList[this] = value; }
+        }
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -112,9 +122,11 @@ namespace TestThisSerene.MovieDB.Entities
             public DateTimeField ReleaseDate;
             public Int32Field Runtime;
             public Int32Field Kind;
+            /*
             public Int32Field GenreId;
             public StringField GenreName;
-
+            */
+            public ListField<Int32> GenreList;
             public RowFields()
                 : base("[mov].[Movie]")
             {

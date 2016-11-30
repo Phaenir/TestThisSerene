@@ -1650,6 +1650,33 @@ var TestThisSerene;
 (function (TestThisSerene) {
     var MovieDB;
     (function (MovieDB) {
+        var GenreListFormatter = (function () {
+            function GenreListFormatter() {
+            }
+            GenreListFormatter.prototype.format = function (ctx) {
+                var idList = ctx.value;
+                if (!idList || !idList.length)
+                    return "";
+                var byId = MovieDB.GenreRow.getLookup().itemById;
+                return idList.map(function (x) {
+                    var g = byId[x];
+                    if (!g)
+                        return x.toString();
+                    return Q.htmlEncode(g.Genre);
+                }).join(", ");
+            };
+            GenreListFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], GenreListFormatter);
+            return GenreListFormatter;
+        }());
+        MovieDB.GenreListFormatter = GenreListFormatter;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
         var MovieDialog = (function (_super) {
             __extends(MovieDialog, _super);
             function MovieDialog() {
@@ -3242,6 +3269,11 @@ var TestThisSerene;
             GenreRow.idProperty = 'GenreId';
             GenreRow.nameProperty = 'Genre';
             GenreRow.localTextPrefix = 'MovieDB.Genre';
+            GenreRow.lookupKey = 'MovieDB.Genre';
+            function getLookup() {
+                return Q.getLookup('MovieDB.Genre');
+            }
+            GenreRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = GenreRow.Fields || (GenreRow.Fields = {}));
@@ -3279,7 +3311,22 @@ var TestThisSerene;
             return MovieForm;
         }(Serenity.PrefixedContext));
         MovieDB.MovieForm = MovieForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieGenresRow;
+        (function (MovieGenresRow) {
+            MovieGenresRow.idProperty = 'MovieGenreId';
+            MovieGenresRow.localTextPrefix = 'MovieDB.MovieGenres';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MovieGenresRow.Fields || (MovieGenresRow.Fields = {}));
+            ['MovieGenreId', 'MovieId', 'GenreId', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'Genre'].forEach(function (x) { return Fields[x] = x; });
+        })(MovieGenresRow = MovieDB.MovieGenresRow || (MovieDB.MovieGenresRow = {}));
     })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
@@ -3307,7 +3354,7 @@ var TestThisSerene;
             var Fields;
             (function (Fields) {
             })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
-            ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime', 'Kind'].forEach(function (x) { return Fields[x] = x; });
+            ['MovieId', 'Title', 'Description', 'Storyline', 'Year', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList'].forEach(function (x) { return Fields[x] = x; });
         })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
     })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));

@@ -402,6 +402,11 @@ declare namespace TestThisSerene.Northwind {
     }
 }
 declare namespace TestThisSerene.MovieDB {
+    class GenreListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace TestThisSerene.MovieDB {
     class MovieDialog extends Serenity.EntityDialog<MovieRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1348,6 +1353,8 @@ declare namespace TestThisSerene.Membership {
     }
 }
 declare namespace TestThisSerene.MovieDB {
+}
+declare namespace TestThisSerene.MovieDB {
     class GenreForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -1364,20 +1371,22 @@ declare namespace TestThisSerene.MovieDB {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<GenreRow>;
         namespace Fields {
-            const GenreId: any;
-            const Genre: any;
+            const GenreId: string;
+            const Genre: string;
         }
     }
 }
 declare namespace TestThisSerene.MovieDB {
     namespace GenreService {
         const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<GenreRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<GenreRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Create(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<GenreRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<GenreRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
@@ -1399,8 +1408,41 @@ declare namespace TestThisSerene.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        GenreList: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
+    }
+}
+declare namespace TestThisSerene.MovieDB {
+    interface MovieGenresRow {
+        MovieGenreId?: number;
+        MovieId?: number;
+        GenreId?: number;
+        MovieTitle?: string;
+        MovieDescription?: string;
+        MovieStoryline?: string;
+        MovieYear?: number;
+        MovieReleaseDate?: string;
+        MovieRuntime?: number;
+        MovieKind?: number;
+        Genre?: string;
+    }
+    namespace MovieGenresRow {
+        const idProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const MovieGenreId: string;
+            const MovieId: string;
+            const GenreId: string;
+            const MovieTitle: string;
+            const MovieDescription: string;
+            const MovieStoryline: string;
+            const MovieYear: string;
+            const MovieReleaseDate: string;
+            const MovieRuntime: string;
+            const MovieKind: string;
+            const Genre: string;
+        }
     }
 }
 declare namespace TestThisSerene.MovieDB {
@@ -1420,6 +1462,7 @@ declare namespace TestThisSerene.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
+        GenreList?: number[];
     }
     namespace MovieRow {
         const idProperty: string;
@@ -1434,6 +1477,7 @@ declare namespace TestThisSerene.MovieDB {
             const ReleaseDate: string;
             const Runtime: string;
             const Kind: string;
+            const GenreList: string;
         }
     }
 }

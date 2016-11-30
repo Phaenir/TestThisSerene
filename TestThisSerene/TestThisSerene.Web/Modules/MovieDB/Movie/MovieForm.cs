@@ -20,7 +20,10 @@ namespace TestThisSerene.MovieDB.Forms
         public String Storyline { get; set; }
         public Int32 Year { get; set; }
         public DateTime ReleaseDate { get; set; }
+        /*
         public Int32 GenreId { get; set; }
+        */
+        public List<Int32> GenreList { get; set; }
         public MovieKind Kind { get; set; }
         public Int32 Runtime { get; set; }
     }
