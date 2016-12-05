@@ -2005,6 +2005,7 @@
     <Compile Include="Modules\Membership\Account\SignUp\SignUpRequest.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieListRequest.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
