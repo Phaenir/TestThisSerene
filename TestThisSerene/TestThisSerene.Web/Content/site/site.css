@@ -8033,3 +8033,12 @@ section.content > .s-DataGrid {
 .s-MovieDB-MovieGenresDialog .caption {
   width: 150px;
 }
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MovieDB-PersonDialog > .size {
+  width: 650px;
+}
+.s-MovieDB-PersonDialog .caption {
+  width: 150px;
+}

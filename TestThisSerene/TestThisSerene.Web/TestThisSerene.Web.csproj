@@ -1335,6 +1335,9 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Modules.MovieDB.Person.Gender.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.GenreColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1345,6 +1348,12 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieKind.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieListRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderListRequest.ts">
@@ -1812,6 +1821,20 @@
     <TypeScriptCompile Include="Modules\MovieDB\Genre\GenreDialog.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Genre\GenreEditor.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Genre\GenreEditorDialog.ts" />
+    <Content Include="Modules\MovieDB\Person\PersonIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonGrid.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonDialog.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonEditor.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonEditorDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1919,6 +1942,9 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.MovieEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.PersonEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
@@ -1956,6 +1982,7 @@
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161121_152600_MovieKind.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161122_145100_GenreTable.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161130_164100_MovieGenres.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161206_161600_PersonAndMovieCast.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161118_195400_DragDropSample.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161013_002500_CustomerDetails.cs" />
@@ -2006,6 +2033,7 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieListRequest.cs" />
+    <Compile Include="Modules\MovieDB\Person\Gender.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
@@ -2155,6 +2183,12 @@
     <Compile Include="Modules\MovieDB\Genre\GenrePage.cs" />
     <Compile Include="Modules\MovieDB\MovieGenres\MovieGenresRow.cs" />
     <Compile Include="Modules\MovieDB\MovieGenres\MovieGenresRepository.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonRow.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonColumns.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonForm.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonRepository.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonEndpoint.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\typings\site\" />
