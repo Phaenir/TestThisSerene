@@ -1341,6 +1341,9 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.GenreColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1835,6 +1838,17 @@
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonDialog.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonEditor.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonEditorDialog.ts" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditor.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditorDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1937,6 +1951,9 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.GenreListFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.MovieCastEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.MovieEditorAttribute.cs">
@@ -2189,6 +2206,11 @@
     <Compile Include="Modules\MovieDB\Person\PersonRepository.cs" />
     <Compile Include="Modules\MovieDB\Person\PersonEndpoint.cs" />
     <Compile Include="Modules\MovieDB\Person\PersonPage.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastRow.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastColumns.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastForm.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastRepository.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\typings\site\" />

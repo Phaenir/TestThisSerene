@@ -438,6 +438,24 @@ declare namespace TestThisSerene.MovieDB {
     }
 }
 declare namespace TestThisSerene.MovieDB {
+    class MovieCastEditor extends Common.GridEditorBase<MovieCastRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MovieCastEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        protected getAddButtonCaption(): string;
+    }
+}
+declare namespace TestThisSerene.MovieDB {
+    class MovieCastEditorDialog extends Common.GridEditorDialog<MovieCastRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: MovieCastForm;
+        constructor();
+    }
+}
+declare namespace TestThisSerene.MovieDB {
     class GenreListFormatter implements Slick.Formatter {
         format(ctx: Slick.FormatterContext): string;
     }
@@ -1442,12 +1460,87 @@ declare namespace TestThisSerene.MovieDB {
 declare namespace TestThisSerene.MovieDB {
 }
 declare namespace TestThisSerene.MovieDB {
+    class MovieCastForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MovieCastForm {
+        MovieId: Serenity.IntegerEditor;
+        PersonId: Serenity.IntegerEditor;
+        Character: Serenity.StringEditor;
+    }
+}
+declare namespace TestThisSerene.MovieDB {
+    interface MovieCastRow {
+        MovieCastId?: number;
+        MovieId?: number;
+        PersonId?: number;
+        Character?: string;
+        MovieTitle?: string;
+        MovieDescription?: string;
+        MovieStoryline?: string;
+        MovieYear?: number;
+        MovieReleaseDate?: string;
+        MovieRuntime?: number;
+        MovieKind?: number;
+        PersonFirstName?: string;
+        PersonLastName?: string;
+        PersonBirthdate?: string;
+        PersonBirthPlace?: string;
+        PersonGender?: number;
+        PersonHeight?: number;
+    }
+    namespace MovieCastRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const MovieCastId: string;
+            const MovieId: string;
+            const PersonId: string;
+            const Character: string;
+            const MovieTitle: string;
+            const MovieDescription: string;
+            const MovieStoryline: string;
+            const MovieYear: string;
+            const MovieReleaseDate: string;
+            const MovieRuntime: string;
+            const MovieKind: string;
+            const PersonFirstName: string;
+            const PersonLastName: string;
+            const PersonBirthdate: string;
+            const PersonBirthPlace: string;
+            const PersonGender: string;
+            const PersonHeight: string;
+        }
+    }
+}
+declare namespace TestThisSerene.MovieDB {
+    namespace MovieCastService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MovieCastRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MovieCastRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MovieCastRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MovieCastRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace TestThisSerene.MovieDB {
+}
+declare namespace TestThisSerene.MovieDB {
     class MovieForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
     interface MovieForm {
         Title: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
+        CastList: MovieCastEditor;
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
@@ -1555,6 +1648,7 @@ declare namespace TestThisSerene.MovieDB {
     interface PersonForm {
         FirstName: Serenity.StringEditor;
         LastName: Serenity.StringEditor;
+        FullName: Serenity.StringEditor;
         Birthdate: Serenity.DateEditor;
         BirthPlace: Serenity.StringEditor;
         Gender: Serenity.EnumEditor;

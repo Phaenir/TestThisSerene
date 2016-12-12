@@ -1736,6 +1736,53 @@ var TestThisSerene;
         MovieDB.PersonGrid = PersonGrid;
     })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastEditor = (function (_super) {
+            __extends(MovieCastEditor, _super);
+            function MovieCastEditor(container) {
+                _super.call(this, container);
+            }
+            MovieCastEditor.prototype.getColumnsKey = function () { return 'MovieDB.MovieCast'; };
+            MovieCastEditor.prototype.getDialogType = function () { return MovieDB.MovieCastEditorDialog; };
+            MovieCastEditor.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            MovieCastEditor.prototype.getAddButtonCaption = function () {
+                return "Add";
+            };
+            MovieCastEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MovieCastEditor);
+            return MovieCastEditor;
+        }(TestThisSerene.Common.GridEditorBase));
+        MovieDB.MovieCastEditor = MovieCastEditor;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastEditorDialog = (function (_super) {
+            __extends(MovieCastEditorDialog, _super);
+            function MovieCastEditorDialog() {
+                _super.call(this);
+                this.form = new MovieDB.MovieCastForm(this.idPrefix);
+            }
+            MovieCastEditorDialog.prototype.getFormKey = function () { return MovieDB.MovieCastForm.formKey; };
+            MovieCastEditorDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            MovieCastEditorDialog.prototype.getNameProperty = function () { return MovieDB.MovieCastRow.nameProperty; };
+            MovieCastEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MovieCastEditorDialog);
+            return MovieCastEditorDialog;
+        }(TestThisSerene.Common.GridEditorDialog));
+        MovieDB.MovieCastEditorDialog = MovieCastEditorDialog;
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
 (function (TestThisSerene) {
     var MovieDB;
@@ -3423,6 +3470,55 @@ var TestThisSerene;
 (function (TestThisSerene) {
     var MovieDB;
     (function (MovieDB) {
+        var MovieCastForm = (function (_super) {
+            __extends(MovieCastForm, _super);
+            function MovieCastForm() {
+                _super.apply(this, arguments);
+            }
+            MovieCastForm.formKey = 'MovieDB.MovieCast';
+            return MovieCastForm;
+        }(Serenity.PrefixedContext));
+        MovieDB.MovieCastForm = MovieCastForm;
+        [['MovieId', function () { return Serenity.IntegerEditor; }], ['PersonId', function () { return Serenity.IntegerEditor; }], ['Character', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MovieCastForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastRow;
+        (function (MovieCastRow) {
+            MovieCastRow.idProperty = 'MovieCastId';
+            MovieCastRow.nameProperty = 'Character';
+            MovieCastRow.localTextPrefix = 'MovieDB.MovieCast';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MovieCastRow.Fields || (MovieCastRow.Fields = {}));
+            ['MovieCastId', 'MovieId', 'PersonId', 'Character', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'PersonFirstName', 'PersonLastName', 'PersonBirthdate', 'PersonBirthPlace', 'PersonGender', 'PersonHeight'].forEach(function (x) { return Fields[x] = x; });
+        })(MovieCastRow = MovieDB.MovieCastRow || (MovieDB.MovieCastRow = {}));
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastService;
+        (function (MovieCastService) {
+            MovieCastService.baseUrl = 'MovieDB/MovieCast';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MovieCastService.Methods || (MovieCastService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MovieCastService[x] = function (r, s, o) { return Q.serviceRequest(MovieCastService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MovieCastService.baseUrl + '/' + x;
+            });
+        })(MovieCastService = MovieDB.MovieCastService || (MovieDB.MovieCastService = {}));
+    })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
+})(TestThisSerene || (TestThisSerene = {}));
+var TestThisSerene;
+(function (TestThisSerene) {
+    var MovieDB;
+    (function (MovieDB) {
         var MovieForm = (function (_super) {
             __extends(MovieForm, _super);
             function MovieForm() {
@@ -3432,7 +3528,7 @@ var TestThisSerene;
             return MovieForm;
         }(Serenity.PrefixedContext));
         MovieDB.MovieForm = MovieForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['CastList', function () { return MovieDB.MovieCastEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['Year', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
@@ -3509,7 +3605,7 @@ var TestThisSerene;
             return PersonForm;
         }(Serenity.PrefixedContext));
         MovieDB.PersonForm = PersonForm;
-        [['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['Birthdate', function () { return Serenity.DateEditor; }], ['BirthPlace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.EnumEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['FullName', function () { return Serenity.StringEditor; }], ['Birthdate', function () { return Serenity.DateEditor; }], ['BirthPlace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.EnumEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = TestThisSerene.MovieDB || (TestThisSerene.MovieDB = {}));
 })(TestThisSerene || (TestThisSerene = {}));
 var TestThisSerene;
