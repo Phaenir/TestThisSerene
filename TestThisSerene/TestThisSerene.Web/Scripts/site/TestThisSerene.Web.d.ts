@@ -444,6 +444,7 @@ declare namespace TestThisSerene.MovieDB {
         protected getLocalTextPrefix(): string;
         constructor(container: JQuery);
         protected getAddButtonCaption(): string;
+        protected validateEntity(row: MovieCastRow, id: number): boolean;
     }
 }
 declare namespace TestThisSerene.MovieDB {
@@ -1464,8 +1465,7 @@ declare namespace TestThisSerene.MovieDB {
         static formKey: string;
     }
     interface MovieCastForm {
-        MovieId: Serenity.IntegerEditor;
-        PersonId: Serenity.IntegerEditor;
+        PersonId: Serenity.LookupEditor;
         Character: Serenity.StringEditor;
     }
 }
@@ -1484,6 +1484,7 @@ declare namespace TestThisSerene.MovieDB {
         MovieKind?: number;
         PersonFirstName?: string;
         PersonLastName?: string;
+        PersonFullname?: string;
         PersonBirthdate?: string;
         PersonBirthPlace?: string;
         PersonGender?: number;
@@ -1507,6 +1508,7 @@ declare namespace TestThisSerene.MovieDB {
             const MovieKind: string;
             const PersonFirstName: string;
             const PersonLastName: string;
+            const PersonFullname: string;
             const PersonBirthdate: string;
             const PersonBirthPlace: string;
             const PersonGender: string;

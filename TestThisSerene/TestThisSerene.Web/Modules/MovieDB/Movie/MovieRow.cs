@@ -95,6 +95,12 @@ namespace TestThisSerene.MovieDB.Entities
             get { return Fields.GenreList[this]; }
             set { Fields.GenreList[this] = value; }
         }
+        [DisplayName("Cast List"), SetFieldFlags(FieldFlags.NotMapped)]
+        public List<MovieCastRow> CastList
+        {
+            get { return Fields.CastList[this]; }
+            set { Fields.CastList[this] = value; }
+        }
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -122,6 +128,7 @@ namespace TestThisSerene.MovieDB.Entities
             public DateTimeField ReleaseDate;
             public Int32Field Runtime;
             public Int32Field Kind;
+            public RowListField<MovieCastRow> CastList;
             /*
             public Int32Field GenreId;
             public StringField GenreName;
